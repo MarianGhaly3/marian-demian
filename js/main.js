@@ -55,7 +55,7 @@
   var preview = document.getElementById('editorPreview');
   var caret = document.getElementById('caret');
 
-  var snippet = '<div class="brand">\n  <h1>Marian Demian</h1>\n  <p>Full-Stack Developer</p>\n</div>';
+  var snippet = '<div class="brand">\n  <h1>Marian Demian</h1>\n  <p>Full-Stack Developer</p>\n  <p>turning briefs into Creative responsive Websites</p>\n</div>';
 
   function revealPreview() {
     if (preview) preview.classList.add('is-visible');
