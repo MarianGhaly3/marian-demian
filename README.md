@@ -1,17 +1,25 @@
 # Marian Demian — Portfolio
 
-A single-page portfolio site built with plain HTML, CSS and JavaScript (plus a
-touch of Google Fonts). No build step, no framework — ready to publish as-is.
+A single-page portfolio site built with plain HTML, CSS and JavaScript (plus
+Google Fonts). No build step, no framework — ready to publish as-is.
 
 ## Structure
 
 ```
-index.html          the whole site (one page, anchor-linked sections)
-css/styles.css       all styles (design tokens at the top)
-js/main.js           mobile nav, hero typing animation, work filters,
-                      directory search, copy-email button
-assets/               logo files + favicons, cropped from your uploaded logo
+index.html                        the whole site (one page, anchor-linked sections)
+css/styles.css                    all styles (design tokens at the top)
+js/main.js                        nav, hero animation, filters, search, lightbox, slider
+assets/logo-*.png                 logo + favicons, cropped from your uploaded logo
+assets/projects/*.jpg             the 6 "Selected work" case-study images
+assets/projects/branding/*.jpg    the 4 branding-gallery slide images
+assets/projects/directory/*.jpg   mockup images for the "More live builds" cards
 ```
+
+Every image under `assets/projects/` is currently a **labelled placeholder** —
+each one prints its own filename on the image itself, so it's obvious what to
+replace. Swap a file for your real screenshot/mockup **using the exact same
+filename and folder**, and it updates everywhere automatically — no HTML or
+CSS edits needed.
 
 ## Publishing to GitHub Pages
 
@@ -34,15 +42,34 @@ Custom domain** once the site is live, and follow GitHub's DNS instructions.
   text you want to change.
 - **Colours** — all defined once as CSS variables at the top of
   `css/styles.css` (`:root { ... }`), pulled from your logo file.
-- **Adding a project card** — copy one `<article class="project-card">...
-  </article>` block in the Work section and edit the title, tags, gradient
-  colours (`--grad-a` / `--grad-b`), description and link.
-- **Adding a directory link** — copy one `<a class="dir-row">...</a>` line
-  and update the `href`, `data-name`, `data-cat` and visible text.
+- **Selected work cards** — each `<article class="project-card">` has a
+  `.project-media` div with a `data-images` (comma-separated if you want a
+  multi-image gallery for that project) and `data-caption` attribute that
+  feed the zoom lightbox. Swap the `<img src>` to match.
+- **Directory cards** — each `<article class="dir-card">` has a `.dir-media`
+  button with the same `data-images` / `data-caption` pattern. To give a card
+  more than one image (e.g. a homepage + a product page), just list several
+  paths: `data-images="a.jpg, b.jpg, c.jpg"` — the lightbox will automatically
+  show prev/next arrows for that card. Copy a whole `<article>` block to add
+  a new site, or delete one to remove it — there's no hardcoded count
+  anywhere on the page.
+- **Branding gallery** — each `<figure class="gallery-slide">` in the
+  `#brandingTrack` is one slide; copy/remove/reorder freely, the JS rebuilds
+  the dots automatically.
+
+## Still to finish
+
+- **6th "Selected work" project** — one slot is still a placeholder card.
+  Send me the project name, platform, country and a one-line description of
+  the custom work and I'll fill it in.
+- **Real screenshots** for the 6 case-study cards, the 4 branding-gallery
+  slides, and the "More live builds" mockups — drop them into the matching
+  `assets/projects/...` filename (see Structure above).
 
 ## Notes
 
-- The "28 more live builds" directory pulls each site's favicon live from
-  Google's favicon service at view-time — no extra assets needed, and it
-  fails silently (just hides the icon) if a favicon isn't available.
-- All animation respects `prefers-reduced-motion`.
+- Clicking any project or directory image opens a lightbox to zoom; it
+  supports left/right arrow keys, Escape to close, and multi-image galleries
+  per card (see "Directory cards" above).
+- All animation (hero typing, stat count-up, gallery autoplay) respects
+  `prefers-reduced-motion`.
